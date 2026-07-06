@@ -134,12 +134,7 @@ scalable    1
 
 ## Algorithm
 
-1. Read the input text file.
-2. Split each line into individual words.
-3. Emit each word with a value of **1**.
-4. Group all identical words.
-5. Sum the values for each word.
-6. Store the output in HDFS.
+<img width="1122" height="1402" alt="image" src="https://github.com/user-attachments/assets/536a6389-a32b-49d1-9e62-a11e8adbd7e2" />
 
 ---
 
@@ -413,7 +408,17 @@ uses        1
 ```
 
 ---
+## Result
 
+The Word Count MapReduce program was successfully implemented and executed using Apache Hadoop 3.4.0. The input text file was processed by the Mapper and Reducer, and the occurrences of each word were accurately counted and stored in the HDFS output directory.
+
+---
+
+## Conclusion
+
+This experiment demonstrated the implementation of the Word Count application using the Hadoop MapReduce framework. Students gained practical experience in writing, compiling, packaging, and executing a MapReduce program on a Hadoop cluster. The experiment also provided an understanding of the Mapper, Reducer, Shuffle and Sort phases, and the overall workflow of distributed data processing using Hadoop.
+
+---
 ## Advantages
 
 - Supports parallel processing.
@@ -451,13 +456,3 @@ uses        1
 10. List some real-world applications of MapReduce.
 
 ---
-
-## Result
-
-The Word Count MapReduce program was successfully implemented and executed using Apache Hadoop 3.4.0. The input text file was processed by the Mapper and Reducer, and the occurrences of each word were accurately counted and stored in the HDFS output directory.
-
----
-
-## Conclusion
-
-This experiment demonstrated the implementation of the Word Count application using the Hadoop MapReduce framework. Students gained practical experience in writing, compiling, packaging, and executing a MapReduce program on a Hadoop cluster. The experiment also provided an understanding of the Mapper, Reducer, Shuffle and Sort phases, and the overall workflow of distributed data processing using Hadoop.

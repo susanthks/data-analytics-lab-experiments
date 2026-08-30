@@ -76,17 +76,14 @@ A large variance indicates that the values are widely distributed around the mea
 
 For a sample:
 
-\[
-s^2 = \frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}
-\]
+$s^2 = \frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}$
 
 where:
 
-- \(x_i\) = individual observation
-- \(\bar{x}\) = sample mean
-- \(n\) = number of observations
-- \(s^2\) = sample variance
-
+- $x_i$ = individual observation
+- $\bar{x}$ = sample mean
+- $n$ = number of observations
+- $s^2$ = sample variance
 
 
 

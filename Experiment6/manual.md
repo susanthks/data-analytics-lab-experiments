@@ -4,21 +4,21 @@
 
 ---
 
-## 1. AIM
+##  AIM
 
 To implement and execute **Pig Latin scripts** to perform **SORT, GROUP, JOIN, PROJECT, and FILTER** operations on datasets using Apache Pig.
 
 ---
 
-## 2. REQUIREMENTS
+## REQUIREMENTS
 
-### 2.1 Hardware Requirements
+### Hardware Requirements
 
 - Computer/Laptop
 - Minimum 4 GB RAM recommended
 - Sufficient storage for Hadoop and input datasets
 
-### 2.2 Software Requirements
+### Software Requirements
 
 | Software | Version |
 |---|---|
@@ -33,9 +33,9 @@ To implement and execute **Pig Latin scripts** to perform **SORT, GROUP, JOIN, P
 
 ---
 
-## 3. THEORY
+## THEORY
 
-### 3.1 Apache Pig
+### Apache Pig
 
 Apache Pig is a high-level data-flow platform used for processing and analyzing large datasets on Hadoop. Its scripting language is called **Pig Latin**.
 
@@ -47,7 +47,7 @@ Basic workflow:
 LOAD → TRANSFORM → DUMP / STORE
 ```
 
-### 3.2 Important Pig Latin Operators
+### Important Pig Latin Operators
 
 #### FILTER
 
@@ -57,24 +57,12 @@ Selects records satisfying a condition.
 result = FILTER relation BY condition;
 ```
 
-Example:
-
-```pig
-passed = FILTER students BY mark >= 50;
-```
-
 #### PROJECT
 
 Selects required fields using `FOREACH ... GENERATE`.
 
 ```pig
 result = FOREACH relation GENERATE field1, field2;
-```
-
-Example:
-
-```pig
-student_names = FOREACH students GENERATE name, mark;
 ```
 
 #### SORT
@@ -106,9 +94,9 @@ result = JOIN relation1 BY field1,
 
 ---
 
-## 4. DATASETS
+## DATASETS
 
-### 4.1 Students Dataset
+### Students Dataset
 
 Create `students.csv`:
 
@@ -129,7 +117,7 @@ Schema:
 student_id,name,department,mark
 ```
 
-### 4.2 Departments Dataset
+### Departments Dataset
 
 Create `departments.csv`:
 
@@ -147,7 +135,7 @@ department_code,department_name
 
 ---
 
-## 5. ALGORITHM
+## ALGORITHM
 
 ### Part A – SORT
 
@@ -275,9 +263,9 @@ hdfs dfs -cat /pig_input/departments.csv
 
 ---
 
-# 7. PIG LATIN PROGRAMS
+# PIG LATIN PROGRAMS
 
-## 7.1 SORT
+## SORT
 
 Create:
 
@@ -321,7 +309,7 @@ Expected output:
 
 ---
 
-## 7.2 GROUP
+## GROUP
 
 Create:
 
@@ -367,7 +355,7 @@ Expected output:
 
 ---
 
-## 7.3 JOIN
+## JOIN
 
 Create:
 
@@ -427,7 +415,7 @@ Expected output:
 
 ---
 
-## 7.4 PROJECT
+## PROJECT
 
 Create:
 
@@ -472,7 +460,7 @@ Expected output:
 
 ---
 
-## 7.5 FILTER
+## FILTER
 
 Create:
 
@@ -513,7 +501,7 @@ Expected output:
 
 ---
 
-# 8. COMBINED PIG LATIN SCRIPT
+# COMBINED PIG LATIN SCRIPT
 
 Create:
 
@@ -583,7 +571,7 @@ pig -x mapreduce experiment6.pig
 
 ---
 
-# 9. STORING OUTPUT IN HDFS
+# STORING OUTPUT IN HDFS
 
 Instead of `DUMP`, results can be stored using `STORE`.
 
@@ -609,7 +597,7 @@ hdfs dfs -cat /pig_output/sorted/part-*
 
 ---
 
-# 10. OUTPUT SUMMARY
+#  OUTPUT SUMMARY
 
 | Operation | Pig Latin Operator | Purpose |
 |---|---|---|
@@ -621,7 +609,7 @@ hdfs dfs -cat /pig_output/sorted/part-*
 
 ---
 
-# 11. OBSERVATION TABLE
+# OBSERVATION TABLE
 
 | Sl. No. | Operation | Input Relation | Condition / Key | Expected Result |
 |---:|---|---|---|---|
@@ -633,7 +621,7 @@ hdfs dfs -cat /pig_output/sorted/part-*
 
 ---
 
-# 12. RESULT
+# RESULT
 
 The required **Pig Latin scripts were successfully implemented and executed** to perform:
 
@@ -651,22 +639,7 @@ on the given datasets using Apache Pig and Hadoop.
 
 This experiment demonstrated Apache Pig as a high-level data-flow platform for processing datasets on Hadoop.
 
-Students learned how to:
 
-- Load structured data using `LOAD`.
-- Select records using `FILTER`.
-- Select fields using `FOREACH ... GENERATE`.
-- Sort data using `ORDER BY`.
-- Group records using `GROUP`.
-- Combine datasets using `JOIN`.
-- Use aggregate functions with grouped relations.
-- Display results using `DUMP`.
-- Store results in HDFS using `STORE`.
-- Execute Pig Latin scripts in MapReduce mode.
-
-Pig Latin simplifies large-scale data processing by allowing users to express data transformations using concise data-flow statements instead of writing complete Java MapReduce programs.
-
----
 
 # 14. VIVA QUESTIONS
 

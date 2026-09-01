@@ -4,58 +4,16 @@
 
 ---
 
-## 1. AIM
+## AIM
 
 To implement a **Hadoop MapReduce program to remove stop words from the given text files** and generate a filtered text output containing only meaningful words.
 
 ---
 
-# 2. REQUIREMENTS
 
-## 2.1 Hardware Requirements
 
-- Computer/Laptop
-- Minimum 4 GB RAM recommended
-- Sufficient storage for Hadoop and HDFS data
+# THEORY
 
-## 2.2 Software Requirements
-
-| Software | Version |
-|---|---|
-| Operating System | Ubuntu Linux 24.04 LTS |
-| Java | JDK 8 or Hadoop-compatible JDK |
-| Apache Hadoop | 3.4.0 |
-| HDFS | Configured and running |
-| YARN | Configured and running |
-
----
-
-# 3. THEORY
-
-## 3.1 Introduction
-
-Text data often contains words that occur frequently but provide little useful information for analysis. Such words are called **stop words**.
-
-Examples of common English stop words are:
-
-```text
-a
-an
-the
-is
-are
-was
-were
-and
-or
-of
-to
-in
-on
-for
-with
-by
-```
 
 Stop-word removal is a common preprocessing technique used in:
 
@@ -67,82 +25,12 @@ Stop-word removal is a common preprocessing technique used in:
 - Sentiment Analysis
 - Machine Learning
 
----
-
-## 3.2 What are Stop Words?
-
 Stop words are commonly occurring words that are usually removed during text preprocessing because they may contribute little semantic information to a particular analysis.
 
-For example:
-
-```text
-Input:
-Hadoop is a framework for big data processing.
-
-After removing stop words:
-Hadoop framework big data processing
-```
-
-Here:
-
-```text
-is
-a
-for
-```
-
-are treated as stop words.
-
-> **Note:** The exact list of stop words depends on the application. In this experiment, a predefined list of common English stop words is used.
 
 ---
 
-## 3.3 MapReduce Approach
-
-The stop-word removal process can be implemented using the Mapper.
-
-The Mapper:
-
-1. Reads each input line.
-2. Splits the line into words.
-3. Converts each word to lowercase for comparison.
-4. Checks whether the word belongs to the stop-word list.
-5. Ignores the word if it is a stop word.
-6. Emits the remaining words.
-
-The Reducer receives the remaining words and writes them to the output.
-
----
-
-## 3.4 Example
-
-Consider:
-
-```text
-Hadoop is a framework for big data.
-```
-
-The Mapper examines each word:
-
-| Word | Stop Word? | Action |
-|---|---|---|
-| Hadoop | No | Keep |
-| is | Yes | Remove |
-| a | Yes | Remove |
-| framework | No | Keep |
-| for | Yes | Remove |
-| big | No | Keep |
-| data | No | Keep |
-
-Filtered result:
-
-```text
-Hadoop framework big data
-```
-
----
-
-## 3.5 MapReduce Workflow
+## MapReduce Workflow
 
 ```text
                   Input Text File
@@ -212,7 +100,7 @@ Hadoop framework big data
 
 ---
 
-# 5. PROCEDURE
+# PROCEDURE
 
 ## Step 1: Start Hadoop Services
 
@@ -509,9 +397,9 @@ data
 
 ---
 
-# 6. PROGRAM / SOURCE CODE
+#  PROGRAM / SOURCE CODE
 
-## 6.1 Mapper Program — `MapperClass.java`
+##  Mapper Program — `MapperClass.java`
 
 ```java
 import java.io.IOException;
@@ -577,21 +465,10 @@ public class MapperClass
 }
 ```
 
-### Description
-
-The Mapper:
-
-1. Reads each line.
-2. Splits it into words.
-3. Removes leading and trailing punctuation.
-4. Converts the word to lowercase for stop-word comparison.
-5. Checks the stop-word set.
-6. Discards stop words.
-7. Emits non-stop words.
 
 ---
 
-## 6.2 Reducer Program — `ReducerClass.java`
+## Reducer Program — `ReducerClass.java`
 
 ```java
 import java.io.IOException;
@@ -616,24 +493,10 @@ public class ReducerClass
 }
 ```
 
-### Description
-
-The Reducer receives the remaining words from the Mapper and writes them to the output.
-
-The key is the normalized lowercase word, while the value contains the original word.
-
-For example:
-
-```text
-hadoop    Hadoop
-framework framework
-```
-
-The output key is used by Hadoop for sorting.
 
 ---
 
-## 6.3 Driver Program — `RemoveStopWords.java`
+##  Driver Program — `RemoveStopWords.java`
 
 ```java
 import org.apache.hadoop.conf.Configuration;
@@ -685,9 +548,9 @@ public class RemoveStopWords {
 
 ---
 
-# 7. OUTPUT
+# OUTPUT
 
-## 7.1 Input
+##  Input
 
 ```text
 Hadoop is a framework for big data processing.
@@ -697,26 +560,10 @@ MapReduce is a programming model for processing data.
 
 ---
 
-## 7.2 Stop Words Removed
-
-For this experiment, words such as the following are removed:
-
-```text
-is
-a
-the
-for
-and
-of
-to
-in
-on
-with
-```
 
 ---
 
-## 7.3 Filtered Output
+##  Output
 
 Command:
 
@@ -749,7 +596,7 @@ The output is sorted by the normalized key.
 
 ---
 
-## 7.4 Cleaner Final Text
+## Cleaner Final Text
 
 The significant words extracted from the input are:
 
@@ -783,7 +630,7 @@ MapReduce programming model processing data
 
 ---
 
-# 8. RESULT
+# RESULT
 
 The **MapReduce program for removing stop words from the given text file was successfully implemented and executed using Apache Hadoop**.
 
@@ -795,20 +642,6 @@ The Mapper identified and removed predefined stop words, while the remaining mea
 
 This experiment demonstrated the use of Hadoop MapReduce for **text preprocessing and stop-word removal**.
 
-The experiment provided practical understanding of:
-
-- Text preprocessing.
-- Stop-word identification.
-- Mapper-based filtering.
-- Key-value pair generation.
-- Shuffle and Sort.
-- Reducer processing.
-- HDFS input and output.
-- Execution of a Java MapReduce application.
-
-Stop-word removal is an important preprocessing step in many **Natural Language Processing and Big Data analytics applications**.
-
----
 
 # 10. VIVA QUESTIONS
 

@@ -638,12 +638,12 @@ The Mapper identified and removed predefined stop words, while the remaining mea
 
 ---
 
-# 9. CONCLUSION
+# CONCLUSION
 
 This experiment demonstrated the use of Hadoop MapReduce for **text preprocessing and stop-word removal**.
 
 
-# 10. VIVA QUESTIONS
+# VIVA QUESTIONS
 
 ### 1. What are stop words?
 
@@ -743,7 +743,7 @@ hdfs dfs -cat /stopword_output/part-r-00000
 
 ---
 
-# 11. IMPORTANT COMMANDS – QUICK REFERENCE
+#  IMPORTANT COMMANDS – QUICK REFERENCE
 
 ```bash
 # Start Hadoop services
@@ -787,7 +787,7 @@ hdfs dfs -cat /stopword_output/part-r-00000
 
 ---
 
-# 12. COMPLETE EXPERIMENT WORKFLOW
+#  COMPLETE EXPERIMENT WORKFLOW
 
 ```text
                        Start
@@ -860,7 +860,7 @@ hdfs dfs -cat /stopword_output/part-r-00000
 
 ---
 
-# 13. KEY LEARNING OUTCOMES
+# KEY LEARNING OUTCOMES
 
 After completing this experiment, the student should be able to:
 

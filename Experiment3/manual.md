@@ -4,138 +4,20 @@
 
 ---
 
-## 1. AIM
+## AIM
 
 To implement a **Hadoop MapReduce program** that calculates the average length of all words beginning with each character in a given input text file.
 
 ---
 
-## 2. REQUIREMENTS
 
-### 2.1 Hardware Requirements
+# THEORY
 
-- Computer/Laptop
-- Minimum 4 GB RAM recommended
-- Sufficient storage for Hadoop installation and HDFS data
 
-### 2.2 Software Requirements
 
-| Software | Version |
-|---|---|
-| Operating System | Ubuntu Linux 24.04 LTS |
-| Java | JDK 8 or Hadoop-compatible JDK |
-| Apache Hadoop | 3.4.0 |
-| HDFS | Configured and running |
-| YARN | Configured and running |
 
----
 
-# 3. THEORY
-
-## 3.1 Introduction
-
-In the Word Count experiment, the Mapper generates a key-value pair in the form:
-
-```text
-(word, 1)
-```
-
-and the Reducer calculates the total number of occurrences of each word.
-
-In this experiment, the same MapReduce programming model is modified to calculate the **average length of words based on their starting character**.
-
-For every word:
-
-- The **key** is the first character of the word.
-- The **value** contains the length of the word and a count of `1`.
-
-For example:
-
-```text
-Hadoop
-```
-
-has:
-
-```text
-Starting character = h
-Word length = 6
-```
-
-Therefore, the Mapper can generate:
-
-```text
-(h, 6, 1)
-```
-
-For a group of words beginning with `h`, the Reducer calculates:
-
-```text
-Average Word Length = Total Word Length / Number of Words
-```
-
----
-
-## 3.2 Example
-
-Consider the input:
-
-```text
-Hadoop hello hive
-MapReduce machine
-big data
-```
-
-The Mapper groups words according to their first character.
-
-Conceptually:
-
-```text
-h → (6,1)
-h → (5,1)
-h → (4,1)
-
-m → (8,1)
-m → (7,1)
-
-b → (3,1)
-d → (4,1)
-```
-
-The Reducer calculates the average for each character.
-
-For `h`:
-
-```text
-Total length = 6 + 5 + 4 = 15
-Number of words = 3
-
-Average = 15 / 3
-        = 5.0
-```
-
-For `m`:
-
-```text
-Total length = 8 + 7 = 15
-Number of words = 2
-
-Average = 15 / 2
-        = 7.5
-```
-
-Final result:
-
-```text
-b    3.0
-d    4.0
-h    5.0
-m    7.5
-```
-
----
-
-## 3.3 MapReduce Processing
+## MapReduce Processing
 
 The complete processing can be represented as:
 
@@ -167,75 +49,7 @@ The complete processing can be represented as:
 
 ---
 
-## 3.4 Mapper Operation
-
-The Mapper:
-
-1. Reads each input line.
-2. Splits the line into individual words.
-3. Converts the word to lowercase.
-4. Finds the first character.
-5. Calculates the word length.
-6. Emits the starting character as the key.
-7. Emits word length and count as the value.
-
-Example:
-
-```text
-Hadoop
-```
-
-produces:
-
-```text
-(h, 6, 1)
-```
-
----
-
-## 3.5 Shuffle and Sort
-
-Hadoop automatically groups all words having the same starting character.
-
-For example:
-
-```text
-(h,6,1)
-(h,5,1)
-(h,4,1)
-```
-
-becomes:
-
-```text
-h → [(6,1), (5,1), (4,1)]
-```
-
-The grouped values are passed to the Reducer.
-
----
-
-## 3.6 Reducer Operation
-
-The Reducer:
-
-1. Receives a starting character.
-2. Extracts the word length from each value.
-3. Calculates the total word length.
-4. Counts the number of words.
-5. Calculates the average.
-6. Writes the character and average length.
-
-Formula:
-
-```text
-Average Word Length =
-    Total Length of Words / Number of Words
-```
-
----
-
-# 4. ALGORITHM
+# ALGORITHM
 
 ### Algorithm: Average Word Length by Starting Character
 
@@ -267,7 +81,7 @@ Average Word Length =
 
 ---
 
-# 5. PROCEDURE
+# PROCEDURE
 
 ## Step 1: Start Hadoop Services
 
@@ -587,9 +401,9 @@ m    7.5
 
 ---
 
-# 6. PROGRAM / SOURCE CODE
+# PROGRAM / SOURCE CODE
 
-## 6.1 Mapper Program — `MapperClass.java`
+## Mapper Program — `MapperClass.java`
 
 ```java
 import java.io.IOException;
@@ -628,35 +442,9 @@ public class MapperClass
 }
 ```
 
-### Description
 
-The Mapper produces:
 
-```text
-(starting_character, word_length, 1)
-```
-
-The value is stored as a text string in the form:
-
-```text
-length,count
-```
-
-Example:
-
-```text
-Hadoop
-```
-
-produces:
-
-```text
-h    6,1
-```
-
----
-
-## 6.2 Reducer Program — `ReducerClass.java`
+## Reducer Program — `ReducerClass.java`
 
 ```java
 import java.io.IOException;
@@ -696,29 +484,10 @@ public class ReducerClass
 }
 ```
 
-### Description
-
-The Reducer receives all values for a starting character.
-
-For example:
-
-```text
-h → [6,1] [5,1] [4,1]
-```
-
-It calculates:
-
-```text
-Total Length = 6 + 5 + 4 = 15
-Total Words = 3
-
-Average = 15 / 3
-        = 5.00
-```
 
 ---
 
-## 6.3 Driver Program — `AverageWordLength.java`
+## Driver Program — `AverageWordLength.java`
 
 ```java
 import org.apache.hadoop.conf.Configuration;
@@ -768,24 +537,11 @@ public class AverageWordLength {
 }
 ```
 
-### Description
-
-The Driver program:
-
-- Creates and configures the MapReduce job.
-- Specifies the Mapper.
-- Specifies the Reducer.
-- Sets Mapper output types.
-- Sets Reducer output types.
-- Specifies the HDFS input directory.
-- Specifies the HDFS output directory.
-- Executes the MapReduce job.
-
 ---
 
-# 7. OUTPUT
+# OUTPUT
 
-## 7.1 Input
+##  Input
 
 The input file contains:
 
@@ -797,7 +553,7 @@ big data
 
 ---
 
-## 7.2 Mapper Output — Conceptual
+##  Mapper Output — Conceptual
 
 The Mapper produces:
 
@@ -815,7 +571,7 @@ d    4,1
 
 ---
 
-## 7.3 Shuffle and Sort — Conceptual
+## Shuffle and Sort — Conceptual
 
 Hadoop groups values according to their starting character:
 
@@ -831,7 +587,7 @@ m → [9,1], [7,1]
 
 ---
 
-## 7.4 Reducer Output
+## Reducer Output
 
 Command:
 
@@ -860,7 +616,7 @@ Average = (9 + 7) / 2
 
 ---
 
-## 7.5 Observation Table
+##  Observation Table
 
 | Sl. No. | Starting Character | Words | Total Length | Number of Words | Average Length |
 |---:|:---:|---|---:|---:|---:|
@@ -871,7 +627,7 @@ Average = (9 + 7) / 2
 
 ---
 
-# 8. RESULT
+# RESULT
 
 The **average word length for each starting character was successfully calculated using the Hadoop MapReduce framework**. The Mapper grouped words according to their first character, while the Reducer calculated the average length using the total word length and number of words in each group.
 
@@ -886,20 +642,10 @@ m    8.00
 
 ---
 
-# 9. CONCLUSION
+# CONCLUSION
 
 This experiment demonstrated how the basic Word Count MapReduce program can be modified to perform an aggregation other than simple counting.
 
-The experiment provided practical understanding of:
-
-- Generating custom Mapper key-value pairs.
-- Grouping data based on the first character of a word.
-- Passing multiple values to the Reducer.
-- Calculating aggregate values in the Reducer.
-- Using HDFS for input and output.
-- Executing a Java MapReduce application.
-
-The experiment demonstrates the flexibility of MapReduce for solving different types of data aggregation problems.
 
 ---
 

@@ -4,21 +4,21 @@
 
 ---
 
-## 1. AIM
+## AIM
 
 To implement and execute **database operations using Apache Hive**, including database creation, table creation, data insertion, data retrieval, filtering, sorting, grouping, aggregation, updating, and deletion using HiveQL.
 
 ---
 
-## 2. REQUIREMENTS
+## REQUIREMENTS
 
-### 2.1 Hardware Requirements
+### Hardware Requirements
 
 - Computer/Laptop
 - Minimum 4 GB RAM recommended
 - Sufficient storage for Hadoop and Hive
 
-### 2.2 Software Requirements
+### Software Requirements
 
 | Software | Version |
 |---|---|
@@ -33,15 +33,15 @@ To implement and execute **database operations using Apache Hive**, including da
 
 ---
 
-## 3. THEORY
+## THEORY
 
-### 3.1 What is Apache Hive?
+### What is Apache Hive?
 
 Apache Hive is a data warehouse infrastructure built on top of Hadoop. It provides a SQL-like language called **HiveQL (Hive Query Language)** for querying and analyzing large datasets stored in Hadoop.
 
 Hive allows users to perform database-style operations without writing MapReduce programs manually.
 
-### 3.2 HiveQL
+### HiveQL
 
 HiveQL supports operations such as:
 
@@ -78,7 +78,7 @@ Process / Analyze Data
 
 ---
 
-## 4. DATABASE AND TABLE OPERATIONS
+## DATABASE AND TABLE OPERATIONS
 
 The following operations are implemented:
 
@@ -101,7 +101,7 @@ The following operations are implemented:
 
 ---
 
-## 5. ALGORITHM
+## ALGORITHM
 
 1. Start HDFS and YARN services.
 2. Start Hive or Beeline.
@@ -158,7 +158,7 @@ If HiveServer2 is configured, Beeline can be used.
 
 ---
 
-## 7. CREATE AND SELECT DATABASE
+## CREATE AND SELECT DATABASE
 
 ### Display Databases
 
@@ -186,7 +186,7 @@ SELECT current_database();
 
 ---
 
-## 8. CREATE TABLE
+## CREATE TABLE
 
 ```sql
 CREATE TABLE students (
@@ -223,7 +223,7 @@ mark         int
 
 ---
 
-## 9. INSERT DATA
+## INSERT DATA
 
 ```sql
 INSERT INTO TABLE students VALUES
@@ -241,7 +241,7 @@ INSERT INTO TABLE students VALUES
 
 ---
 
-## 10. LOAD DATA FROM A FILE
+## LOAD DATA FROM A FILE
 
 Create:
 
@@ -275,7 +275,7 @@ Replace the path with the actual location.
 
 ---
 
-## 11. SELECT OPERATIONS
+## SELECT OPERATIONS
 
 ### Display All Records
 
@@ -305,7 +305,7 @@ FROM students;
 
 ---
 
-## 12. FILTER USING WHERE
+## FILTER USING WHERE
 
 Students scoring 80 or more:
 
@@ -335,7 +335,7 @@ WHERE department = 'CS';
 
 ---
 
-## 13. SORT USING ORDER BY
+## SORT USING ORDER BY
 
 ```sql
 SELECT *
@@ -358,7 +358,7 @@ Expected order:
 
 ---
 
-## 14. GROUP BY
+## GROUP BY
 
 ```sql
 SELECT department, COUNT(*) AS student_count
@@ -376,7 +376,7 @@ ME  2
 
 ---
 
-## 15. AGGREGATE FUNCTIONS
+## AGGREGATE FUNCTIONS
 
 ### Count
 
@@ -448,7 +448,7 @@ ME  74.00
 
 ---
 
-## 16. DISTINCT
+## DISTINCT
 
 ```sql
 SELECT DISTINCT department
@@ -465,7 +465,7 @@ ME
 
 ---
 
-## 17. LIMIT
+## LIMIT
 
 ```sql
 SELECT *
@@ -475,7 +475,7 @@ LIMIT 5;
 
 ---
 
-## 18. ALTER TABLE
+##  ALTER TABLE
 
 ### Rename Table
 
@@ -514,7 +514,7 @@ DESCRIBE students;
 
 ---
 
-## 19. DROP TABLE
+## DROP TABLE
 
 ```sql
 DROP TABLE IF EXISTS students;
@@ -528,7 +528,7 @@ SHOW TABLES;
 
 ---
 
-## 20. DROP DATABASE
+## DROP DATABASE
 
 If the database is empty:
 
@@ -550,7 +550,7 @@ SHOW DATABASES;
 
 ---
 
-## 21. COMPLETE HIVEQL PROGRAM
+## COMPLETE HIVEQL PROGRAM
 
 Create:
 
@@ -621,7 +621,7 @@ LIMIT 5;
 
 ---
 
-## 22. EXECUTE THE HIVE SCRIPT
+## EXECUTE THE HIVE SCRIPT
 
 Hive CLI:
 
@@ -639,7 +639,7 @@ The exact command depends on the installed Hive environment.
 
 ---
 
-## 23. OUTPUT
+## OUTPUT
 
 ### Table Data
 
@@ -683,7 +683,7 @@ Lowest Mark    = 67
 
 ---
 
-## 24. OBSERVATION TABLE
+## OBSERVATION TABLE
 
 | Sl. No. | Operation | HiveQL Statement | Expected Result |
 |---:|---|---|---|
@@ -702,7 +702,7 @@ Lowest Mark    = 67
 
 ---
 
-## 25. RESULT
+## RESULT
 
 The **database operations using Apache Hive were successfully implemented and executed** using HiveQL.
 
@@ -751,7 +751,7 @@ This experiment provided practical experience with **Apache Hive and HiveQL**. S
 
 ---
 
-## 28. IMPORTANT COMMANDS – QUICK REFERENCE
+## IMPORTANT COMMANDS – QUICK REFERENCE
 
 ### Hadoop
 
@@ -821,7 +821,7 @@ beeline -f experiment7.hql
 
 ---
 
-## 29. COMPLETE EXPERIMENT WORKFLOW
+## COMPLETE EXPERIMENT WORKFLOW
 
 ```text
                          START
@@ -872,7 +872,7 @@ beeline -f experiment7.hql
 
 ---
 
-## 30. KEY LEARNING OUTCOMES
+## KEY LEARNING OUTCOMES
 
 After completing this experiment, students should be able to:
 
@@ -892,7 +892,7 @@ After completing this experiment, students should be able to:
 
 ---
 
-## 31. EXTENSION ACTIVITIES
+## EXTENSION ACTIVITIES
 
 1. Create a second table named `departments`.
 2. Insert department information into the table.
@@ -909,23 +909,3 @@ After completing this experiment, students should be able to:
 
 ---
 
-## 32. LAB RECORD CHECKLIST
-
-- [ ] Hadoop services started successfully.
-- [ ] Hive/Beeline started successfully.
-- [ ] Database created.
-- [ ] Student table created.
-- [ ] Data inserted or loaded.
-- [ ] `SELECT` operation executed.
-- [ ] `WHERE` operation executed.
-- [ ] `ORDER BY` operation executed.
-- [ ] `GROUP BY` operation executed.
-- [ ] Aggregate functions executed.
-- [ ] `ALTER TABLE` operation verified.
-- [ ] Table/database deletion tested.
-- [ ] Outputs verified.
-- [ ] Screenshots captured.
-- [ ] Result and conclusion recorded.
-- [ ] Viva questions reviewed.
-
----

@@ -18,9 +18,9 @@ The **factorial** of a non-negative integer `n` is the product of all positive i
 
 It is represented as:
 
-\[
+$[
 n! = n \times (n-1) \times (n-2) \times \cdots \times 2 \times 1
-\]
+\]$
 
 
 

@@ -4,35 +4,15 @@
 
 ---
 
-## 1. AIM
+## AIM
 
 To implement a **Matrix Multiplication program using the Hadoop MapReduce framework** and perform multiplication of two matrices stored as input data in HDFS.
 
 ---
 
-# 2. REQUIREMENTS
+# THEORY
 
-## 2.1 Hardware Requirements
-
-- Computer/Laptop
-- Minimum 4 GB RAM recommended
-- Sufficient storage for Hadoop installation and HDFS data
-
-## 2.2 Software Requirements
-
-| Software | Version |
-|---|---|
-| Operating System | Ubuntu Linux 24.04 LTS |
-| Java | JDK 8 or Hadoop-compatible JDK |
-| Apache Hadoop | 3.4.0 |
-| HDFS | Configured and running |
-| YARN | Configured and running |
-
----
-
-# 3. THEORY
-
-## 3.1 Matrix Multiplication
+## Matrix Multiplication
 
 If matrix **A** has dimensions `m × n` and matrix **B** has dimensions `n × p`, their product **C = A × B** has dimensions `m × p`.
 
@@ -68,47 +48,9 @@ C = [19 22]
     [43 50]
 ```
 
-## 3.2 Matrix Multiplication Using MapReduce
-
-Matrix multiplication is suitable for MapReduce because the calculation of individual output elements can be distributed across Mapper and Reducer tasks.
-
-The basic process is:
-
-1. Read elements of matrices A and B.
-2. Generate intermediate key-value pairs based on the output position.
-3. Group all values required for each output element.
-4. Multiply corresponding values.
-5. Sum the products in the Reducer.
-6. Generate the final matrix.
-
-The Mapper uses `(i,j)` as the key for output element `C[i][j]`.
-
 ---
 
-## 3.3 Input Format
-
-Each matrix element is represented as:
-
-```text
-MatrixName,row,column,value
-```
-
-Example:
-
-```text
-A,0,0,1
-A,0,1,2
-A,1,0,3
-A,1,1,4
-B,0,0,5
-B,0,1,6
-B,1,0,7
-B,1,1,8
-```
-
----
-
-## 3.4 MapReduce Workflow
+## MapReduce Workflow
 
 ```text
                   Input Matrix Data
@@ -139,7 +81,7 @@ B,1,1,8
 
 ---
 
-# 4. ALGORITHM
+# ALGORITHM
 
 **Step 1:** Start HDFS and YARN services.
 
@@ -167,7 +109,7 @@ B,1,1,8
 
 ---
 
-# 5. PROCEDURE
+# PROCEDURE
 
 ## Step 1: Start Hadoop Services
 
@@ -295,9 +237,9 @@ Expected:
 
 ---
 
-# 6. PROGRAM / SOURCE CODE
+# PROGRAM / SOURCE CODE
 
-## 6.1 Mapper — `MapperClass.java`
+## Mapper — `MapperClass.java`
 
 ```java
 import java.io.IOException;
@@ -355,7 +297,7 @@ public class MapperClass
 }
 ```
 
-## 6.2 Reducer — `ReducerClass.java`
+## Reducer — `ReducerClass.java`
 
 ```java
 import java.io.IOException;
@@ -417,7 +359,7 @@ public class ReducerClass
 }
 ```
 
-## 6.3 Driver — `MatrixMultiplication.java`
+## Driver — `MatrixMultiplication.java`
 
 ```java
 import org.apache.hadoop.conf.Configuration;
@@ -467,78 +409,10 @@ public class MatrixMultiplication {
 
 ---
 
-# 7. PROGRAM EXPLANATION
 
-## 7.1 Mapper
+# OUTPUT
 
-For an element of Matrix A:
-
-```text
-A[i][k]
-```
-
-the Mapper generates values for all output columns:
-
-```text
-(i,0) → A,k,value
-(i,1) → A,k,value
-```
-
-For an element of Matrix B:
-
-```text
-B[k][j]
-```
-
-the Mapper generates values for all output rows:
-
-```text
-(0,j) → B,k,value
-(1,j) → B,k,value
-```
-
-Thus all information required for a particular output element is grouped under the key:
-
-```text
-(i,j)
-```
-
-## 7.2 Shuffle and Sort
-
-For example, for output element `(0,0)`, Hadoop groups:
-
-```text
-A,0,1
-A,1,2
-B,0,5
-B,1,7
-```
-
-The common inner indexes are `0` and `1`.
-
-## 7.3 Reducer
-
-The Reducer calculates:
-
-```text
-C[0][0]
-= (1×5) + (2×7)
-= 19
-```
-
-Similarly:
-
-```text
-C[0][1] = (1×6) + (2×8) = 22
-C[1][0] = (3×5) + (4×7) = 43
-C[1][1] = (3×6) + (4×8) = 50
-```
-
----
-
-# 8. OUTPUT
-
-## 8.1 Input Matrices
+## Input Matrices
 
 ### Matrix A
 
@@ -554,7 +428,7 @@ C[1][1] = (3×6) + (4×8) = 50
 7  8
 ```
 
-## 8.2 MapReduce Output
+## MapReduce Output
 
 ```text
 0,0    19
@@ -563,14 +437,14 @@ C[1][1] = (3×6) + (4×8) = 50
 1,1    50
 ```
 
-## 8.3 Final Matrix
+## Final Matrix
 
 ```text
 C = [19 22]
     [43 50]
 ```
 
-## 8.4 Observation Table
+## Observation Table
 
 | Output Element | Calculation | Result |
 |---|---|---:|
@@ -581,7 +455,7 @@ C = [19 22]
 
 ---
 
-# 9. RESULT
+# RESULT
 
 The **Matrix Multiplication program was successfully implemented and executed using the Hadoop MapReduce framework**.
 
@@ -606,20 +480,10 @@ The result was successfully generated in HDFS.
 
 ---
 
-# 10. CONCLUSION
+# CONCLUSION
 
 This experiment demonstrated how Hadoop MapReduce can be used to perform distributed matrix multiplication.
 
-Students gained practical understanding of:
-
-- Matrix multiplication.
-- Row-column multiplication.
-- Mapper key-value generation.
-- Distributed matrix computation.
-- Shuffle and Sort.
-- Reducer-side aggregation.
-- HDFS input and output.
-- Compilation, packaging, and execution of a Java MapReduce application.
 
 ---
 

@@ -9,38 +9,6 @@ Write an **R program** to:
 
 ---
 
-## Objectives
-
-After completing this experiment, students will be able to:
-
-- Understand basic programming constructs in R.
-- Use variables and user input in R.
-- Implement `if-else` conditions.
-- Use `for` loops for repetitive calculations.
-- Calculate the factorial of a number.
-- Reverse and compare strings in R.
-- Create and use user-defined functions.
-- Determine whether a number or string is a palindrome.
-
----
-
-## Software Requirements
-
-- R
-- RStudio (recommended)
-- Linux / Windows / macOS
-
-### Verify R Installation
-
-Open the terminal or R console and execute:
-
-```r
-R --version
-```
-
-Alternatively, open RStudio and check the R version from the console.
-
----
 
 # Part A – Factorial of a Number
 
@@ -54,30 +22,7 @@ It is represented as:
 n! = n \times (n-1) \times (n-2) \times \cdots \times 2 \times 1
 \]
 
-### Example
 
-For:
-
-```text
-5
-```
-
-the factorial is:
-
-```text
-5! = 5 × 4 × 3 × 2 × 1
-   = 120
-```
-
-Special case:
-
-```text
-0! = 1
-```
-
-Factorial is not defined for negative integers.
-
----
 
 ## 2. Algorithm – Factorial
 
@@ -96,28 +41,20 @@ Factorial is not defined for negative integers.
 ## 3. R Program – Factorial
 
 ```r
-# Experiment 8
-# Part A: Find the factorial of a number
-
-# Read input from the user
 n <- as.integer(readline(prompt = "Enter a non-negative integer: "))
 
-# Check whether the number is negative
 if (n < 0) {
   cat("Factorial is not defined for negative numbers.\n")
 } else {
   
-  # Initialize factorial
   fact <- 1
   
-  # Calculate factorial
   if (n > 0) {
     for (i in 1:n) {
       fact <- fact * i
     }
   }
-  
-  # Display result
+
   cat("Factorial of", n, "is", fact, "\n")
 }
 ```
@@ -155,33 +92,6 @@ Factorial is not defined for negative numbers.
 
 A **palindrome** is a number or sequence that reads the same from left to right and right to left.
 
-### Examples of Palindromes
-
-```text
-121
-1331
-12321
-madam
-level
-radar
-```
-
-### Examples that are not palindromes
-
-```text
-123
-1234
-hello
-robot
-```
-
-The basic approach is:
-
-```text
-Original → Reverse → Compare
-```
-
-If the original value and its reverse are equal, the input is a palindrome.
 
 ---
 
@@ -201,19 +111,10 @@ If the original value and its reverse are equal, the input is a palindrome.
 ## 3. R Program – Palindrome Check
 
 ```r
-# Experiment 8
-# Part B: Check whether a number/string is a palindrome
-
-# Read input from the user
 input <- readline(prompt = "Enter a number or string: ")
-
-# Convert input into individual characters
 characters <- strsplit(input, "")[[1]]
 
-# Reverse the characters
 reversed_input <- paste(rev(characters), collapse = "")
-
-# Compare original and reversed strings
 if (input == reversed_input) {
   cat(input, "is a Palindrome.\n")
 } else {
@@ -272,10 +173,9 @@ factorial_custom <- function(n) {
   return(fact)
 }
 
-# Read input
 n <- as.integer(readline(prompt = "Enter a number: "))
 
-# Call function
+
 result <- factorial_custom(n)
 
 if (is.na(result)) {
@@ -302,10 +202,10 @@ is_palindrome <- function(input) {
   return(input == reversed_input)
 }
 
-# Read input
+
 input <- readline(prompt = "Enter a number or string: ")
 
-# Check palindrome
+
 if (is_palindrome(input)) {
   cat(input, "is a Palindrome.\n")
 } else {
@@ -345,9 +245,6 @@ find_factorial <- function(n) {
 }
 
 
-# -------------------------------
-# Palindrome Function
-# -------------------------------
 
 check_palindrome <- function(input) {
   
@@ -362,11 +259,6 @@ check_palindrome <- function(input) {
 }
 
 
-# -------------------------------
-# Main Program
-# -------------------------------
-
-# Factorial
 n <- as.integer(
   readline(prompt = "Enter a non-negative integer: ")
 )
@@ -380,7 +272,6 @@ if (is.na(factorial_result)) {
 }
 
 
-# Palindrome
 input <- readline(
   prompt = "Enter a number or string to check for palindrome: "
 )
@@ -416,81 +307,17 @@ robotics is not a Palindrome.
 
 ---
 
-# Program Explanation
 
-## Factorial
+# Result
 
-The program uses a `for` loop to multiply all integers from `1` to `n`.
+The R programs for:
 
-For example:
+1. **Finding the factorial of a number**, and
+2. **Checking whether a number/string is a palindrome**
 
-```text
-n = 5
-
-fact = 1
-
-i = 1 → fact = 1 × 1 = 1
-i = 2 → fact = 1 × 2 = 2
-i = 3 → fact = 2 × 3 = 6
-i = 4 → fact = 6 × 4 = 24
-i = 5 → fact = 24 × 5 = 120
-```
-
-Therefore:
-
-```text
-5! = 120
-```
+were successfully implemented and executed.
 
 ---
-
-## Palindrome
-
-The palindrome program uses:
-
-```r
-strsplit(input, "")
-```
-
-to divide the input into individual characters.
-
-For example:
-
-```text
-"madam"
-```
-
-becomes:
-
-```text
-m a d a m
-```
-
-The characters are then reversed using:
-
-```r
-rev(characters)
-```
-
-and converted back into a string using:
-
-```r
-paste(..., collapse = "")
-```
-
-The original and reversed strings are then compared.
-
-```text
-Original : madam
-Reverse  : madam
-           ↓
-        Equal
-           ↓
-      Palindrome
-```
-
----
-
 # Important R Functions Used
 
 | Function | Purpose |
@@ -675,16 +502,7 @@ It is used to define a user-defined function in R.
 
 ---
 
-# Result
 
-The R programs for:
-
-1. **Finding the factorial of a number**, and
-2. **Checking whether a number/string is a palindrome**
-
-were successfully implemented and executed.
-
----
 
 # Learning Outcome
 

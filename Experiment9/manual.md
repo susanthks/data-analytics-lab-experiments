@@ -1,337 +1,143 @@
-# Experiment 9: Variance, Covariance and Correlation Using R
+# EXPERIMENT 9  
+## Variance, Covariance and Correlation Using R
 
-## Aim
+### Aim
 
-Write an **R program to calculate variance, covariance, and correlation between different types of attributes**.
+To write an R program to calculate:
 
----
-
-## Objectives
-
-After completing this experiment, students will be able to:
-
-- Understand variance as a measure of data dispersion.
-- Calculate the variance of an attribute using R.
-- Understand covariance between two attributes.
-- Calculate covariance using R.
-- Understand correlation between two numerical attributes.
-- Calculate Pearson correlation using R.
-- Interpret positive, negative, and zero correlation.
-- Use built-in statistical functions in R.
-- Analyze relationships between attributes in a dataset.
+1. Variance
+2. Covariance
+3. Correlation
 
 ---
 
-## Software Requirements
 
-- R
-- RStudio (recommended)
-- Windows / Linux / macOS
+##  Basic Concepts
 
-### Verify R Installation
+### Variance
 
-Open the R console or terminal and execute:
+Variance tells us **how much the values of one variable are spread out**.
 
-```r
-R --version
-```
+- Small variance → values are close together.
+- Large variance → values are more spread out.
 
----
-
-# 1. Introduction
-
-Statistical measures are essential in **Data Analytics** because they help us understand the characteristics and relationships within a dataset.
-
-In this experiment, three important statistical measures are studied:
-
-1. **Variance**
-2. **Covariance**
-3. **Correlation**
-
-These measures are useful for understanding:
-
-- How much an attribute varies.
-- Whether two attributes vary together.
-- The strength and direction of the relationship between two attributes.
-
-For example, consider a dataset containing:
-
-- Hours studied
-- Marks obtained
-- Attendance percentage
-
-We can use variance to understand the spread of marks and correlation to determine whether study hours and marks are related.
-
----
-
-# 2. Variance
-
-## 2.1 Definition
-
-**Variance** measures how far the values in a dataset are spread from their mean.
-
-A small variance indicates that the values are close to the mean.
-
-A large variance indicates that the values are widely distributed around the mean.
-
-For a sample:
-
-$s^2 = \frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}$
-
-where:
-
-- $x_i$ = individual observation
-- $\bar{x}$ = sample mean
-- $n$ = number of observations
-- $s^2$ = sample variance
-
-
-
-
----
-
-## 2.2 Example
-
-Consider the following marks:
-
-```text
-60, 70, 80, 90, 100
-```
-
-The mean is:
-
-```text
-80
-```
-
-The values are distributed around the mean.
-
-Variance quantifies this dispersion.
-
----
-
-## 2.3 Variance in R
-
-R provides the built-in `var()` function.
-
-### Syntax
+**R function:**
 
 ```r
 var(x)
 ```
 
-where `x` is a numeric vector.
+###  Covariance
 
-### Example
+Covariance tells us **how two variables change together**.
 
-```r
-marks <- c(60, 70, 80, 90, 100)
+- Positive covariance → both generally increase together.
+- Negative covariance → one increases while the other decreases.
+- Near-zero covariance → little linear co-movement.
 
-variance <- var(marks)
-
-print(variance)
-```
-
-### Expected Output
-
-```text
-[1] 250
-```
-
----
-
-# 3. Covariance
-
-## 3.1 Definition
-
-**Covariance** measures the direction in which two variables change together.
-
-If two variables tend to increase together, their covariance is positive.
-
-If one variable tends to increase while the other decreases, their covariance is negative.
-
-A covariance close to zero indicates little linear co-movement.
-
-For sample data:
-
-\[
-Cov(X,Y)=
-\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{n-1}
-\]
-
----
-
-## 3.2 Interpretation of Covariance
-
-| Covariance | General Interpretation |
-|---|---|
-| Positive | Variables tend to increase together |
-| Negative | One variable tends to increase when the other decreases |
-| Approximately zero | Little linear co-movement |
-
-**Important:** The magnitude of covariance depends on the units of the variables, so covariance values from differently scaled variables are not directly comparable.
-
----
-
-## 3.3 Covariance in R
-
-R provides the `cov()` function.
-
-### Syntax
+**R function:**
 
 ```r
 cov(x, y)
 ```
 
-### Example
+###  Correlation
 
-```r
-hours <- c(2, 3, 4, 5, 6)
-marks <- c(50, 60, 70, 80, 90)
+Correlation tells us the **strength and direction of a linear relationship** between two variables.
 
-covariance <- cov(hours, marks)
-
-print(covariance)
-```
-
-### Expected Output
+The value of correlation is always between:
 
 ```text
-[1] 12.5
+-1 and +1
 ```
 
-The positive covariance indicates that the two attributes tend to increase together.
+| Correlation | Meaning |
+|---|---|
+| +1 | Perfect positive relationship |
+| Close to +1 | Strong positive relationship |
+| Around 0 | Little/no linear relationship |
+| Close to -1 | Strong negative relationship |
+| -1 | Perfect negative relationship |
 
----
-
-# 4. Correlation
-
-## 4.1 Definition
-
-**Correlation** measures the **strength and direction of a linear relationship** between two numerical variables.
-
-The Pearson correlation coefficient is represented by:
-
-\[
-r =
-\frac{Cov(X,Y)}
-{\sqrt{Var(X)Var(Y)}}
-\]
-
-The correlation coefficient lies between:
-
-\[
--1 \leq r \leq 1
-\]
-
----
-
-## 4.2 Interpretation
-
-| Correlation | Interpretation |
-|---:|---|
-| +1 | Perfect positive linear correlation |
-| +0.7 to +1 | Strong positive correlation |
-| +0.3 to +0.7 | Moderate positive correlation |
-| Around 0 | Little/no linear correlation |
-| -0.3 to -0.7 | Moderate negative correlation |
-| -0.7 to -1 | Strong negative correlation |
-| -1 | Perfect negative linear correlation |
-
-These ranges are only general guidelines; interpretation depends on the context.
-
----
-
-## 4.3 Correlation in R
-
-R provides the `cor()` function.
-
-### Syntax
+**R function:**
 
 ```r
 cor(x, y)
 ```
-
-### Example
-
-```r
-hours <- c(2, 3, 4, 5, 6)
-marks <- c(50, 60, 70, 80, 90)
-
-correlation <- cor(hours, marks)
-
-print(correlation)
-```
-
-### Expected Output
-
-```text
-[1] 1
-```
-
-This indicates a perfect positive linear relationship in this illustrative dataset.
-
----
-
-# 5. Difference Between Variance, Covariance and Correlation
-
-| Measure | Purpose | Number of Variables | Range |
-|---|---|---:|---:|
-| Variance | Measures spread of one variable | 1 | 0 to infinity |
-| Covariance | Measures direction of joint variation | 2 | No fixed range |
-| Correlation | Measures strength and direction of linear relationship | 2 | -1 to +1 |
 
 ### Easy way to remember
 
 ```text
 Variance
    ↓
-Spread of ONE attribute
+Spread of ONE variable
 
 Covariance
    ↓
-Direction of relationship between TWO attributes
+Direction of relationship between TWO variables
 
 Correlation
    ↓
-Strength + direction of linear relationship between TWO attributes
+Strength + direction of linear relationship
 ```
 
 ---
 
-# 6. R Program – Calculate Variance
+# Example Dataset
+
+Consider the following student data:
+
+| Student | Study Hours | Marks |
+|---|---:|---:|
+| A | 2 | 50 |
+| B | 3 | 60 |
+| C | 4 | 70 |
+| D | 5 | 80 |
+| E | 6 | 90 |
+
+We will use **Study Hours** and **Marks** for our experiment.
+
+---
+
+# Program 1 – Calculate Variance
+
+### R Program
 
 ```r
-# Experiment 9
-# Calculate variance of an attribute
+# Variance
 
 marks <- c(60, 70, 80, 90, 100)
 
 variance <- var(marks)
 
-cat("Variance of marks =", variance, "\n")
+cat("Variance =", variance)
 ```
 
 ### Output
 
 ```text
-Variance of marks = 250
+Variance = 250
 ```
+
+### Interpretation
+
+The variance of the marks is **250**.
 
 ---
 
-# 7. R Program – Calculate Covariance
+# Program 2 – Calculate Covariance
+
+### R Program
 
 ```r
-# Experiment 9
-# Calculate covariance between two attributes
+# Covariance
 
 hours <- c(2, 3, 4, 5, 6)
 marks <- c(50, 60, 70, 80, 90)
 
 covariance <- cov(hours, marks)
 
-cat("Covariance =", covariance, "\n")
+cat("Covariance =", covariance)
 ```
 
 ### Output
@@ -340,22 +146,33 @@ cat("Covariance =", covariance, "\n")
 Covariance = 12.5
 ```
 
-The positive value indicates that the two attributes tend to increase together.
+### Interpretation
+
+The covariance is positive.
+
+Therefore:
+
+```text
+Study Hours ↑  →  Marks ↑
+```
+
+The two variables tend to increase together.
 
 ---
 
-# 8. R Program – Calculate Correlation
+# Program 3 – Calculate Correlation
+
+### R Program
 
 ```r
-# Experiment 9
-# Calculate correlation between two attributes
+# Correlation
 
 hours <- c(2, 3, 4, 5, 6)
 marks <- c(50, 60, 70, 80, 90)
 
 correlation <- cor(hours, marks)
 
-cat("Correlation =", correlation, "\n")
+cat("Correlation =", correlation)
 ```
 
 ### Output
@@ -364,30 +181,33 @@ cat("Correlation =", correlation, "\n")
 Correlation = 1
 ```
 
-The result indicates a perfect positive linear relationship for this example.
+### Interpretation
+
+The correlation is **+1**.
+
+Therefore, the data has a **perfect positive linear relationship**.
 
 ---
 
-# 9. Complete R Program
+# Complete Program
 
-The following program calculates **variance, covariance, and correlation** for attributes in the same dataset.
+The following program calculates all three measures.
 
 ```r
 # Experiment 9
 # Variance, Covariance and Correlation
 
-# Student dataset
 hours <- c(2, 3, 4, 5, 6)
 marks <- c(50, 60, 70, 80, 90)
 
-# Calculate variance
+# Variance
 variance_hours <- var(hours)
 variance_marks <- var(marks)
 
-# Calculate covariance
+# Covariance
 covariance <- cov(hours, marks)
 
-# Calculate correlation
+# Correlation
 correlation <- cor(hours, marks)
 
 # Display results
@@ -408,78 +228,95 @@ Correlation = 1
 
 ---
 
-# 10. Using Different Types of Attribute Relationships
+# Procedure
 
-To understand the measures better, consider three different cases.
+### Step 1
+Open **RStudio**.
 
-## Case 1 – Positive Relationship
+### Step 2
+Create the data:
+
+```r
+hours <- c(2, 3, 4, 5, 6)
+marks <- c(50, 60, 70, 80, 90)
+```
+
+### Step 3
+Calculate variance:
+
+```r
+var(hours)
+var(marks)
+```
+
+### Step 4
+Calculate covariance:
+
+```r
+cov(hours, marks)
+```
+
+### Step 5
+Calculate correlation:
+
+```r
+cor(hours, marks)
+```
+
+### Step 6
+Observe and interpret the results.
+
+---
+
+# Important R Functions
+
+| R Function | Purpose |
+|---|---|
+| `mean(x)` | Finds the mean |
+| `var(x)` | Finds variance |
+| `cov(x,y)` | Finds covariance |
+| `cor(x,y)` | Finds correlation |
+| `plot(x,y)` | Creates a graph |
+| `print(x)` | Displays result |
+| `cat()` | Displays formatted output |
+
+---
+
+# Example of Positive and Negative Correlation
+
+## Positive Relationship
 
 ```r
 x <- c(10, 20, 30, 40, 50)
 y <- c(15, 25, 35, 45, 55)
 
-cov(x, y)
 cor(x, y)
 ```
 
-Both variables increase together.
+Here, both variables increase together.
 
-Expected interpretation:
-
-```text
-Positive covariance
-Positive correlation
-```
+**Result:** Positive correlation.
 
 ---
 
-## Case 2 – Negative Relationship
+## Negative Relationship
 
 ```r
 x <- c(10, 20, 30, 40, 50)
 y <- c(50, 40, 30, 20, 10)
 
-cov(x, y)
 cor(x, y)
 ```
 
-As `x` increases, `y` decreases.
+Here, when `x` increases, `y` decreases.
 
-Expected interpretation:
-
-```text
-Negative covariance
-Negative correlation
-```
+**Result:** Negative correlation.
 
 ---
 
-## Case 3 – Weak/No Linear Relationship
+#  Correlation Matrix
 
-```r
-x <- c(1, 2, 3, 4, 5)
-y <- c(3, 1, 5, 2, 4)
-
-cov(x, y)
-cor(x, y)
-```
-
-The variables do not show a strong linear pattern.
-
-Expected interpretation:
-
-```text
-Covariance close to zero
-Correlation close to zero
-```
-
----
-
-# 11. Correlation Matrix
-
-When a dataset contains multiple numerical attributes, we can calculate the correlation between every pair of attributes.
-
-Consider:
+When we have several numerical variables, we can find the correlation between every pair.
 
 ```r
 students <- data.frame(
@@ -491,14 +328,7 @@ students <- data.frame(
 cor(students)
 ```
 
-The output is a correlation matrix.
-
-```text
-            StudyHours Attendance Marks
-StudyHours       1.00       ...    ...
-Attendance       ...        1.00   ...
-Marks            ...        ...    1.00
-```
+The result is called a **correlation matrix**.
 
 The diagonal values are always:
 
@@ -506,36 +336,13 @@ The diagonal values are always:
 1
 ```
 
-because every variable has perfect correlation with itself.
+because a variable has perfect correlation with itself.
 
 ---
 
-# 12. Covariance Matrix
+# Scatter Plot
 
-Similarly, R can calculate the covariance between multiple numerical attributes.
-
-```r
-cov(students)
-```
-
-This produces a covariance matrix.
-
-Example structure:
-
-```text
-            StudyHours Attendance Marks
-StudyHours       ...        ...    ...
-Attendance       ...        ...    ...
-Marks            ...        ...    ...
-```
-
-Unlike correlation, covariance does not have a fixed range.
-
----
-
-# 13. Visualization of Correlation
-
-A scatter plot can help visualize the relationship between two numerical attributes.
+We can visually see the relationship between two variables.
 
 ```r
 hours <- c(2, 3, 4, 5, 6)
@@ -551,252 +358,32 @@ plot(
 )
 ```
 
-A roughly upward-sloping pattern indicates a positive relationship.
+### Observation
 
-
-
-
+An upward pattern indicates a **positive relationship**.
 
 ---
 
-# 14. Complete Data Analytics Example
 
-## Student Performance Analysis
-
-Consider the following dataset:
-
-| Student | Study Hours | Attendance | Marks |
-|---|---:|---:|---:|
-| A | 2 | 60 | 50 |
-| B | 3 | 65 | 60 |
-| C | 4 | 75 | 70 |
-| D | 5 | 85 | 80 |
-| E | 6 | 95 | 90 |
-
-### R Program
-
-```r
-# Student Performance Dataset
-
-students <- data.frame(
-  Student = c("A", "B", "C", "D", "E"),
-  StudyHours = c(2, 3, 4, 5, 6),
-  Attendance = c(60, 65, 75, 85, 95),
-  Marks = c(50, 60, 70, 80, 90)
-)
-
-# Variance
-cat("Variance of Study Hours:",
-    var(students$StudyHours), "\n")
-
-cat("Variance of Attendance:",
-    var(students$Attendance), "\n")
-
-cat("Variance of Marks:",
-    var(students$Marks), "\n")
-
-# Covariance
-cat("\nCovariance between Study Hours and Marks:",
-    cov(students$StudyHours, students$Marks), "\n")
-
-cat("Covariance between Attendance and Marks:",
-    cov(students$Attendance, students$Marks), "\n")
-
-# Correlation
-cat("\nCorrelation between Study Hours and Marks:",
-    cor(students$StudyHours, students$Marks), "\n")
-
-cat("Correlation between Attendance and Marks:",
-    cor(students$Attendance, students$Marks), "\n")
-
-# Correlation matrix
-cat("\nCorrelation Matrix:\n")
-print(cor(students[, 2:4]))
-```
-
----
-
-# 15. Important R Functions
-
-| Function | Purpose | Example |
-|---|---|---|
-| `mean()` | Calculate mean | `mean(x)` |
-| `var()` | Calculate sample variance | `var(x)` |
-| `cov()` | Calculate covariance | `cov(x, y)` |
-| `cor()` | Calculate correlation | `cor(x, y)` |
-| `plot()` | Create a basic plot | `plot(x, y)` |
-| `data.frame()` | Create data frame | `data.frame(x, y)` |
-| `cat()` | Display output | `cat("Result")` |
-| `print()` | Display object | `print(x)` |
-
----
-
-# 16. Important Concepts to Remember
-
-### Variance
-
-Measures **how much one attribute varies**.
-
-### Covariance
-
-Measures **the direction of joint variation between two attributes**.
-
-### Correlation
-
-Measures **the strength and direction of a linear relationship between two attributes**.
-
-### Important Relationship
-
-Correlation is a standardized form of covariance:
-
-\[
-r =
-\frac{Cov(X,Y)}
-{\sqrt{Var(X)Var(Y)}}
-\]
-
-Therefore:
-
-```text
-Covariance → Direction
-Correlation → Direction + Standardized Strength
-```
-
----
-
-# 17. Important Note About Correlation
-
-Correlation does **not** imply causation.
-
-For example, if two variables have a strong positive correlation, it does not necessarily mean that one variable causes the other.
-
-```text
-Correlation ≠ Causation
-```
-
-This is an important concept in Data Analytics.
-
----
-
-# 18. Common Mistakes
-
-## Mistake 1 – Using non-numeric data
-
-Functions such as `var()`, `cov()`, and `cor()` require appropriate numeric data.
-
-Incorrect:
-
-```r
-names <- c("Anu", "Arun", "Rahul")
-
-var(names)
-```
-
-Use numerical attributes instead.
-
----
-
-## Mistake 2 – Different vector lengths
-
-The variables used for covariance/correlation should represent corresponding observations.
-
-```r
-x <- c(1, 2, 3, 4)
-y <- c(10, 20, 30)
-```
-
-These vectors do not have matching lengths.
-
----
-
-## Mistake 3 – Confusing covariance and correlation
-
-Covariance does not have a fixed range.
-
-Correlation always lies between:
-
-```text
--1 and +1
-```
-
----
-
-## Mistake 4 – Assuming correlation means causation
-
-A strong correlation does not prove that one variable causes another.
-
----
-
-# 19. Algorithm
-
-## Algorithm for Variance
-
-1. Start.
-2. Read a numerical attribute.
-3. Calculate the mean.
-4. Calculate deviations from the mean.
-5. Square the deviations.
-6. Calculate their average using the sample variance definition.
-7. Display the variance.
-8. Stop.
-
-## Algorithm for Covariance
-
-1. Start.
-2. Read two numerical attributes.
-3. Calculate the mean of both attributes.
-4. Calculate deviations from their respective means.
-5. Multiply corresponding deviations.
-6. Calculate the sample covariance.
-7. Display the covariance.
-8. Stop.
-
-## Algorithm for Correlation
-
-1. Start.
-2. Read two numerical attributes.
-3. Calculate covariance.
-4. Calculate the standard deviation of both attributes.
-5. Standardize covariance using the standard deviations.
-6. Display the correlation coefficient.
-7. Stop.
-
----
-
-# 20. Result
+# Result
 
 The R program was successfully implemented to calculate:
 
-- **Variance** of numerical attributes.
-- **Covariance** between two numerical attributes.
-- **Correlation** between two numerical attributes.
+- Variance
+- Covariance
+- Correlation
 
-The experiment also demonstrated how these statistical measures can be applied to analyze relationships between attributes in a dataset.
-
----
-
-# 21. Learning Outcomes
-
-After completing this experiment, students should be able to:
-
-- Calculate variance using R.
-- Calculate covariance between attributes.
-- Calculate Pearson correlation.
-- Interpret positive and negative relationships.
-- Generate correlation and covariance matrices.
-- Use statistical functions available in R.
-- Apply statistical measures to real-world datasets.
-- Understand the importance of statistical analysis in Data Analytics.
+The results were used to understand the **spread and relationship between numerical attributes**.
 
 ---
 
-# 22. Viva Questions
+# Viva Questions
 
 ### 1. What is variance?
 
-Variance measures the dispersion of observations around their mean.
+Variance measures the spread of values around their mean.
 
-### 2. Which R function is used to calculate variance?
+### 2. Which function is used for variance?
 
 ```r
 var()
@@ -804,9 +391,9 @@ var()
 
 ### 3. What is covariance?
 
-Covariance measures the direction of joint variation between two variables.
+Covariance shows the direction in which two variables change together.
 
-### 4. Which R function calculates covariance?
+### 4. Which function is used for covariance?
 
 ```r
 cov()
@@ -814,113 +401,132 @@ cov()
 
 ### 5. What is correlation?
 
-Correlation measures the strength and direction of a linear relationship between two variables.
+Correlation measures the strength and direction of a linear relationship.
 
-### 6. Which R function calculates correlation?
+### 6. Which function is used for correlation?
 
 ```r
 cor()
 ```
 
-### 7. What is the range of Pearson correlation?
+### 7. What is the range of correlation?
 
 ```text
 -1 to +1
 ```
 
-### 8. What does a correlation of +1 mean?
+### 8. What does +1 correlation mean?
 
-Perfect positive linear correlation.
+Perfect positive linear relationship.
 
-### 9. What does a correlation of -1 mean?
+### 9. What does -1 correlation mean?
 
-Perfect negative linear correlation.
+Perfect negative linear relationship.
 
-### 10. What does correlation close to zero indicate?
+### 10. What does correlation close to zero mean?
 
 Little or no linear relationship.
 
-### 11. Does covariance have a fixed range?
+### 11. Does correlation imply causation?
 
 No.
 
-### 12. What is the difference between covariance and correlation?
+### 12. What is a correlation matrix?
 
-Covariance indicates the direction of joint variation, while correlation gives both direction and standardized strength of a linear relationship.
-
-### 13. What is a correlation matrix?
-
-A matrix showing pairwise correlations between multiple numerical variables.
-
-### 14. What are the diagonal values of a correlation matrix?
-
-They are `1`, because each variable has perfect correlation with itself.
-
-### 15. Does correlation imply causation?
-
-No.
+It shows the correlation between multiple numerical variables.
 
 ---
 
-# 23. Exercises
+# Student Exercises
 
-1. Write an R program to calculate the variance of the following data:
+### Exercise 1
+
+Calculate the variance of:
 
 ```text
 10, 20, 30, 40, 50
 ```
 
-2. Calculate the covariance between:
+---
+
+### Exercise 2
+
+Find the covariance between:
 
 ```text
 X = 10, 20, 30, 40, 50
 Y = 15, 25, 35, 45, 55
 ```
 
-3. Calculate the correlation between two numerical attributes.
+---
 
-4. Create a student dataset containing:
+### Exercise 3
+
+Calculate the correlation between:
+
+```text
+X = 10, 20, 30, 40, 50
+Y = 50, 40, 30, 20, 10
+```
+
+---
+
+### Exercise 4
+
+Create the following student dataset:
 
 - Study Hours
 - Attendance
 - Assignment Marks
 - Exam Marks
 
-Calculate the variance of each numerical attribute.
+Calculate:
 
-5. Generate a covariance matrix for the student dataset.
-
-6. Generate a correlation matrix for the student dataset.
-
-7. Create a scatter plot between Study Hours and Exam Marks.
-
-8. Identify the attribute that has the strongest positive correlation with Exam Marks.
+1. Variance of each attribute.
+2. Covariance matrix.
+3. Correlation matrix.
 
 ---
 
-# 24. Quick Revision
+### Exercise 5
+
+Create a scatter plot between:
+
+```text
+Study Hours vs Exam Marks
+```
+
+Observe whether the relationship is positive or negative.
+
+---
+
+# Quick Revision
 
 ```text
 VARIANCE
 ↓
-Measures spread of ONE variable
-R function → var()
+Spread of ONE variable
+↓
+R function: var()
 
 COVARIANCE
 ↓
-Measures direction of joint variation
+Direction of joint variation
 between TWO variables
-R function → cov()
+↓
+R function: cov()
 
 CORRELATION
 ↓
-Measures strength + direction
+Strength + direction
 of a LINEAR relationship
-R function → cor()
-Range → -1 to +1
+↓
+R function: cor()
+↓
+Range: -1 to +1
 ```
 
-### Essential R Syntax
+## Essential R Commands
 
 ```r
 var(x)
@@ -935,17 +541,83 @@ cor(x, y)
 ```
 
 ```r
-cor(data_frame)
+cor(data)
 ```
 
 ```r
-cov(data_frame)
+cov(data)
 ```
 
 ---
 
-# Conclusion
+# Learning Outcome
 
-This experiment introduces three fundamental statistical concepts used in Data Analytics: **variance, covariance, and correlation**.
+After completing this experiment, students should be able to:
 
-Using R, students can efficiently calculate these measures and use them to understand the **dispersion and relationships among numerical attributes**. These concepts form the foundation for exploratory data analysis, feature analysis, statistical modeling, and machine learning.
+- Calculate variance using R.
+- Calculate covariance using R.
+- Calculate correlation using R.
+- Interpret positive and negative relationships.
+- Generate a correlation matrix.
+- Create a simple scatter plot.
+- Apply these concepts to a small dataset.
+
+---
+
+# Common Mistakes
+
+### Mistake 1: Using text instead of numbers
+
+Wrong:
+
+```r
+names <- c("Anu", "Arun", "Rahul")
+
+var(names)
+```
+
+Use numerical data for variance, covariance, and correlation.
+
+---
+
+### Mistake 2: Different number of observations
+
+The two variables should normally contain corresponding observations.
+
+Correct:
+
+```r
+x <- c(1, 2, 3, 4)
+y <- c(10, 20, 30, 40)
+```
+
+---
+
+### Mistake 3: Confusing covariance and correlation
+
+Remember:
+
+```text
+Covariance → Direction
+
+Correlation → Strength + Direction
+```
+
+Correlation is always between:
+
+```text
+-1 and +1
+```
+
+---
+
+### Mistake 4: Correlation does not mean causation
+
+```text
+Correlation ≠ Causation
+```
+
+A strong correlation does not prove that one variable causes another.
+
+---
+

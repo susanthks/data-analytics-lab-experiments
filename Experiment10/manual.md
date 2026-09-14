@@ -70,9 +70,9 @@ When there is only one independent variable, it is called **simple linear regres
 
 The general equation is:
 
-\[
+\$$
 Y = \beta_0 + \beta_1X
-\]
+\$$
 
 where:
 
@@ -89,15 +89,15 @@ When there are two or more independent variables, it is called **multiple linear
 
 The general equation is:
 
-\[
+\$$
 Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \beta_3X_3 + \cdots + \beta_nX_n
-\]
+\$$
 
 For the current dataset:
 
-\[
+\$$
 Sales = \beta_0 + \beta_1(TV) + \beta_2(Radio) + \beta_3(Newspaper)
-\]
+\$$
 
 Here:
 

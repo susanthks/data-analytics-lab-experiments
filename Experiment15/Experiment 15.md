@@ -51,6 +51,7 @@ spark_program.py
 
 The data.csv file can contain:
 
+```text
 feature1,feature2
 1.0,1.5
 1.2,1.8
@@ -61,13 +62,14 @@ feature1,feature2
 9.0,1.0
 9.2,1.3
 8.8,0.8
+```
 
 ## Expected Output
 
 The program displays the cluster assigned to each data point and the cluster centers.
 
 Example:
-
+```
 +--------+--------+----------+
 |feature1|feature2|prediction|
 +--------+--------+----------+
@@ -81,12 +83,13 @@ Example:
 |     9.2|     1.3|         2|
 |     8.8|     0.8|         2|
 +--------+--------+----------+
-
+```
+```
 Cluster Centers:
 [1.1, 1.5333333333333334]
 [5.0, 5.466666666666667]
 [9.0, 1.0333333333333334]
-
+```
 Silhouette Score = ...
 
 The exact cluster numbers and centers may vary because cluster labels are assigned by the algorithm.

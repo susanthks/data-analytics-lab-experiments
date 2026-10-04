@@ -1,4 +1,4 @@
-#Experiment 15: Implement Clustering Techniques Using Spark
+# Experiment 15: Implement Clustering Techniques Using Spark
 
 ## Aim
 
@@ -6,15 +6,11 @@ To implement clustering techniques using Apache Spark and analyze the resulting 
 
 ## Requirements
 
-Apache Spark
-
-Scala or PySpark
-
-Java Development Kit (JDK)
-
-Python (for PySpark)
-
-Sample dataset
+- Apache Spark
+- Scala or PySpark
+- Java Development Kit (JDK)
+- Python (for PySpark)
+- Sample dataset
 
 ## Theory
 
@@ -22,37 +18,26 @@ Clustering is an unsupervised machine-learning technique used to group similar d
 
 Common clustering techniques available in Spark include:
 
-K-Means: Partitions data into k clusters by minimizing the distance between data points and their cluster centers.
+- **K-Means:** Partitions data into `k` clusters by minimizing the distance between data points and their cluster centers.
+- **Bisecting K-Means:** A hierarchical approach that repeatedly divides clusters into two groups.
+- **Gaussian Mixture Model (GMM):** Represents clusters as a mixture of Gaussian probability distributions.
 
-Bisecting K-Means: A hierarchical approach that repeatedly divides clusters into two groups.
-
-Gaussian Mixture Model (GMM): Represents clusters as a mixture of Gaussian probability distributions.
-
-In this experiment, K-Means clustering is implemented using Spark MLlib.
+In this experiment, **K-Means clustering** is implemented using Spark MLlib.
 
 ## Procedure
 
-Install and configure Apache Spark.
+1. Install and configure Apache Spark.
+2. Start a Spark application or open a PySpark shell.
+3. Import the required Spark ML libraries.
+4. Load the dataset into a Spark DataFrame.
+5. Select the relevant features for clustering.
+6. Use `VectorAssembler` to combine the features into a single feature vector.
+7. Create a K-Means model and specify the number of clusters (`k`).
+8. Train the model using the feature vectors.
+9. Predict the cluster assigned to each data point.
+10. Display the cluster centers and predictions.
+11. Evaluate the clustering using an appropriate metric such as Silhouette score.
 
-Start a Spark application or open a PySpark shell.
-
-Import the required Spark ML libraries.
-
-Load the dataset into a Spark DataFrame.
-
-Select the relevant features for clustering.
-
-Use VectorAssembler to combine the features into a single feature vector.
-
-Create a K-Means model and specify the number of clusters (k).
-
-Train the model using the feature vectors.
-
-Predict the cluster assigned to each data point.
-
-Display the cluster centers and predictions.
-
-Evaluate the clustering using an appropriate metric such as Silhouette score.
 
 ## PySpark Implementation
 
@@ -88,19 +73,21 @@ Example:
 +--------+--------+----------+
 |     1.0|     1.5|         0|
 |     1.2|     1.8|         0|
+|     1.1|     1.3|         0|
 |     5.0|     5.5|         1|
 |     5.2|     5.8|         1|
+|     4.8|     5.1|         1|
 |     9.0|     1.0|         2|
 |     9.2|     1.3|         2|
+|     8.8|     0.8|         2|
 +--------+--------+----------+
 
 Cluster Centers:
-[...]
-[...]
-[...]
+[1.1, 1.5333333333333334]
+[5.0, 5.466666666666667]
+[9.0, 1.0333333333333334]
 
 Silhouette Score = ...
-
 
 The exact cluster numbers and centers may vary because cluster labels are assigned by the algorithm.
 
